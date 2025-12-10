@@ -264,7 +264,7 @@ export const LoginContainer = ({
         )}
       </Flex>
 
-      <CookiesModal />
+      {/* <CookiesModal /> */}
       <ChineseRedirectModal />
 
       {/* Community modal */}

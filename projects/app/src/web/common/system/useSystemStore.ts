@@ -219,8 +219,13 @@ export const useSystemStore = create<State>()(
             state.initDataBufferId = res.bufferId;
 
             state.feConfigs = res.feConfigs ?? state.feConfigs;
-            state.feConfigs.systemTitle = 'MetaGPT';
-            state.feConfigs.favicon = '/icon/logo.svg';
+            state.feConfigs = {
+              ...state.feConfigs,
+              systemTitle: 'MetaGPT',
+              favicon: '/icon/logo.svg',
+              concatMd: '',
+              docUrl: ''
+            };
             state.subPlans = res.subPlans ?? state.subPlans;
             state.systemVersion = res.systemVersion ?? state.systemVersion;
 
