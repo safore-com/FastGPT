@@ -14,7 +14,14 @@ export const clientInitData = async (
     useSystemStore.getState().initStaticData(res);
 
     return {
-      feConfigs: res.feConfigs || useSystemStore.getState().feConfigs || {}
+      // feConfigs: res.feConfigs || useSystemStore.getState().feConfigs || {}
+      feConfigs: {
+        ...(res.feConfigs || useSystemStore.getState().feConfigs || {}),
+        systemTitle: 'MetaGPT',
+        favicon: '/icon/logo.svg',
+        concatMd: '',
+        docUrl: ''
+      }
     };
   } catch (error) {
     if (retry > 0) {
