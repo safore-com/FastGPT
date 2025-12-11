@@ -224,7 +224,8 @@ export const useSystemStore = create<State>()(
               systemTitle: 'MetaAI',
               favicon: '/icon/logo.svg',
               concatMd: '',
-              docUrl: ''
+              docUrl: '',
+              show_git: ''
             };
             state.subPlans = res.subPlans ?? state.subPlans;
             state.systemVersion = res.systemVersion ?? state.systemVersion;
