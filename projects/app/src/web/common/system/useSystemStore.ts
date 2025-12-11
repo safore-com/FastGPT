@@ -221,7 +221,7 @@ export const useSystemStore = create<State>()(
             state.feConfigs = res.feConfigs ?? state.feConfigs;
             state.feConfigs = {
               ...state.feConfigs,
-              systemTitle: 'MetaGPT',
+              systemTitle: 'MetaAI',
               favicon: '/icon/logo.svg',
               concatMd: '',
               docUrl: ''

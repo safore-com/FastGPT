@@ -17,7 +17,7 @@ export const clientInitData = async (
       // feConfigs: res.feConfigs || useSystemStore.getState().feConfigs || {}
       feConfigs: {
         ...(res.feConfigs || useSystemStore.getState().feConfigs || {}),
-        systemTitle: 'MetaGPT',
+        systemTitle: 'MetaAI',
         favicon: '/icon/logo.svg',
         concatMd: '',
         docUrl: ''
