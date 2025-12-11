@@ -151,11 +151,15 @@ export async function initSystemConfig() {
       show_discount_coupon: process.env.SHOW_DISCOUNT_COUPON === 'true',
       show_dataset_enhance: licenseData?.functions?.datasetEnhance,
       show_batch_eval: licenseData?.functions?.batchEval,
+
+      show_git: false,
       systemTitle: 'MetaAI',
       favicon: '/icon/logo.svg',
       concatMd: '',
       docUrl: '',
-      show_git: false
+      openAPIDocUrl: '',
+      submitPluginRequestUrl: '',
+      appTemplateCourse: ''
     },
     systemEnv: {
       ...fileRes.systemEnv,

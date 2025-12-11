@@ -219,17 +219,6 @@ export const useSystemStore = create<State>()(
             state.initDataBufferId = res.bufferId;
 
             state.feConfigs = res.feConfigs ?? state.feConfigs;
-            state.feConfigs = {
-              ...state.feConfigs,
-              show_git: false,
-              systemTitle: 'MetaAI',
-              favicon: '/icon/logo.svg',
-              concatMd: '',
-              docUrl: '',
-              openAPIDocUrl: '',
-              submitPluginRequestUrl: '',
-              appTemplateCourse: ''
-            };
             state.subPlans = res.subPlans ?? state.subPlans;
             state.systemVersion = res.systemVersion ?? state.systemVersion;
 
