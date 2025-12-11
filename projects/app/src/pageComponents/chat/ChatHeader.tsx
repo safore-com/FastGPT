@@ -80,7 +80,7 @@ const ChatHeader = ({
           <PcHeader
             totalRecordsCount={totalRecordsCount}
             title={chatData.title || t('common:core.chat.New Chat')}
-            chatModels={chatData.app.chatModels}
+            // chatModels={chatData.app.chatModels}
             chatId={chatData.chatId || ''}
           />
           <Box flex={1} />
