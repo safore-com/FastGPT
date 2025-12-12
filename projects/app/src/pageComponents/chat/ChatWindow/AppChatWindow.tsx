@@ -172,7 +172,7 @@ const AppChatWindow = ({ myApps }: Props) => {
             />
           ) : (
             <ChatBox
-              showEmptyIntro
+              showEmptyIntro={false}
               appId={appId}
               chatId={chatId}
               isReady={!loading}

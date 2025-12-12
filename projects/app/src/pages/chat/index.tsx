@@ -75,7 +75,7 @@ const Chat = ({ myApps }: { myApps: AppListItemType[] }) => {
         </PageContainer>
       )}
 
-      {/* {datasetCiteData && (
+      {datasetCiteData && (
         <PageContainer flex="1 0 0" w={0} maxW="560px">
           <ChatQuoteList
             metadata={datasetCiteData.metadata}
@@ -83,7 +83,7 @@ const Chat = ({ myApps }: { myApps: AppListItemType[] }) => {
             onClose={() => setCiteModalData(undefined)}
           />
         </PageContainer>
-      )} */}
+      )}
     </Flex>
   );
 };
