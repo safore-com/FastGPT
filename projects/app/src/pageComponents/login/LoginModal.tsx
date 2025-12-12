@@ -17,7 +17,7 @@ const LoginModal = ({ onSuccess }: LoginModalProps) => {
     <Flex
       alignItems={'center'}
       justifyContent={'center'}
-      bg={['white', `url(${getWebReqUrl('/icon/login-bg.svg')}) no-repeat`]}
+      bg={['white', `url(${getWebReqUrl('/icon/login-bg.png')}) no-repeat`]}
       backgroundSize={['cover', 'cover']}
       userSelect={'none'}
       h={'100%'}
