@@ -9,6 +9,8 @@ import { useTranslation } from 'next-i18next';
 import QuestionTip from '@fastgpt/web/components/common/MyTooltip/QuestionTip';
 import dynamic from 'next/dynamic';
 import type { TeamSubSchema } from '@fastgpt/global/support/wallet/sub/type';
+import Markdown from '@/components/Markdown';
+import MyPopover from '@fastgpt/web/components/common/MyPopover';
 
 const ModelPriceModal = dynamic(() =>
   import('@/components/core/ai/ModelTable').then((mod) => mod.ModelPriceModal)
@@ -73,17 +75,13 @@ const StandardPlanContentList = ({
         <MyIcon name={'price/right'} w={'16px'} mr={3} />
         <Flex alignItems={'center'}>
           <Box fontWeight={'bold'} color={'myGray.600'}>
-            {t('common:support.wallet.subscription.function.Points', {
+            {t('common:n_ai_points', {
               amount: planContent.totalPoints
             })}
           </Box>
           <ModelPriceModal>
             {({ onOpen }) => (
-              <QuestionTip
-                ml={1}
-                label={t('common:support.wallet.subscription.AI points click to read tip')}
-                onClick={onOpen}
-              />
+              <QuestionTip ml={1} label={t('common:aipoint_desc')} onClick={onOpen} />
             )}
           </ModelPriceModal>
         </Flex>
@@ -91,7 +89,7 @@ const StandardPlanContentList = ({
       <Flex alignItems={'center'}>
         <MyIcon name={'price/right'} w={'16px'} mr={3} />
         <Box fontWeight={'bold'} color={'myGray.600'}>
-          {t('common:support.wallet.subscription.function.Max dataset size', {
+          {t('common:n_dataset_size', {
             amount: planContent.maxDatasetSize
           })}
         </Box>
@@ -99,7 +97,7 @@ const StandardPlanContentList = ({
       <Flex alignItems={'center'}>
         <MyIcon name={'price/right'} w={'16px'} mr={3} />
         <Box color={'myGray.600'}>
-          {t('common:support.wallet.subscription.function.Max members', {
+          {t('common:n_team_members', {
             amount: planContent.maxTeamMember
           })}
         </Box>
@@ -107,7 +105,7 @@ const StandardPlanContentList = ({
       <Flex alignItems={'center'}>
         <MyIcon name={'price/right'} w={'16px'} mr={3} />
         <Box color={'myGray.600'}>
-          {t('common:support.wallet.subscription.function.Max app', {
+          {t('common:n_agent_amount', {
             amount: planContent.maxAppAmount
           })}
         </Box>
@@ -115,7 +113,7 @@ const StandardPlanContentList = ({
       <Flex alignItems={'center'}>
         <MyIcon name={'price/right'} w={'16px'} mr={3} />
         <Box color={'myGray.600'}>
-          {t('common:support.wallet.subscription.function.Max dataset', {
+          {t('common:n_dataset_amount', {
             amount: planContent.maxDatasetAmount
           })}
         </Box>
@@ -123,7 +121,7 @@ const StandardPlanContentList = ({
       <Flex alignItems={'center'}>
         <MyIcon name={'price/right'} w={'16px'} mr={3} />
         <Box color={'myGray.600'}>
-          {t('common:support.wallet.subscription.function.History store', {
+          {t('common:n_chat_records_retain', {
             amount: planContent.chatHistoryStoreDuration
           })}
         </Box>
@@ -132,7 +130,7 @@ const StandardPlanContentList = ({
         <Flex alignItems={'center'}>
           <MyIcon name={'price/right'} w={'16px'} mr={3} />
           <Box color={'myGray.600'}>
-            {t('common:support.wallet.subscription.function.Audit log store duration', {
+            {t('common:n_team_audit_day', {
               amount: planContent.auditLogStoreDuration
             })}
           </Box>
@@ -141,37 +139,55 @@ const StandardPlanContentList = ({
       <Flex alignItems={'center'}>
         <MyIcon name={'price/right'} w={'16px'} mr={3} />
         <Box color={'myGray.600'}>
-          {t('common:support.wallet.subscription.function.Requests per minute', {
+          {t('common:n_team_qpm', {
             amount: planContent.requestsPerMinute
           })}
         </Box>
-        <QuestionTip ml={1} label={t('common:support.wallet.subscription.function.qpm tip')} />
+        <QuestionTip ml={1} label={t('common:qpm_desc')} />
       </Flex>
       {!!planContent.websiteSyncPerDataset && (
         <Flex alignItems={'center'}>
           <MyIcon name={'price/right'} w={'16px'} mr={3} />
           <Box fontWeight={'bold'} color={'myGray.600'}>
-            {t('common:support.wallet.subscription.function.Website sync per dataset', {
+            {t('common:n_website_sync_max_pages', {
               amount: planContent.websiteSyncPerDataset
             })}
           </Box>
         </Flex>
       )}
-      {!!planContent.ticketResponseTime && (
-        <Flex alignItems={'center'}>
-          <MyIcon name={'price/right'} w={'16px'} mr={3} />
-          <Box color={'myGray.600'}>
-            {t('common:support.wallet.subscription.function.Ticket response time', {
-              amount: planContent.ticketResponseTime
-            })}
-          </Box>
-        </Flex>
-      )}
+      <Flex alignItems={'center'}>
+        <MyIcon name={'price/right'} w={'16px'} mr={3} />
+        <Box color={'myGray.600'}>
+          {planContent.ticketResponseTime
+            ? t('common:worker_order_support_time', {
+                amount: planContent.ticketResponseTime
+              })
+            : t('common:community_support')}
+        </Box>
+        {subPlans?.communitySupportTip && !planContent.ticketResponseTime && (
+          <MyPopover
+            trigger="hover"
+            placement="bottom"
+            offset={[0, 10]}
+            Trigger={
+              <Flex alignItems={'center'}>
+                <MyIcon name={'help' as any} w={'16px'} color={'myGray.500'} ml={1} />
+              </Flex>
+            }
+          >
+            {({ onClose }) => (
+              <Box maxW="300px" p={3}>
+                <Markdown source={subPlans.communitySupportTip} />
+              </Box>
+            )}
+          </MyPopover>
+        )}
+      </Flex>
       {!!planContent.appRegistrationCount && (
         <Flex alignItems={'center'}>
           <MyIcon name={'price/right'} w={'16px'} mr={3} />
           <Box color={'myGray.600'}>
-            {t('common:support.wallet.subscription.function.App registration count', {
+            {t('common:n_app_registration_amount', {
               amount: planContent.appRegistrationCount
             })}
           </Box>
@@ -181,14 +197,11 @@ const StandardPlanContentList = ({
         <Flex alignItems={'center'}>
           <MyIcon name={'price/right'} w={'16px'} mr={3} />
           <Box color={'myGray.600'}>
-            {t('common:support.wallet.subscription.function.Custom domain', {
+            {t('common:n_custom_domain_amount', {
               amount: planContent.customDomain
             })}
           </Box>
-          <QuestionTip
-            ml={1}
-            label={t('common:support.wallet.subscription.function.custom domain tip')}
-          />
+          <QuestionTip ml={1} label={t('common:n_custom_domain_amount tip')} />
         </Flex>
       )}
     </Grid>

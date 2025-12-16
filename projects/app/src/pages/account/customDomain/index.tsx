@@ -67,18 +67,19 @@ const CustomDomain = () => {
   });
 
   const { ConfirmModal, openConfirm } = useConfirm({
-    content: t('account:custom_domain.delete_confirm')
+    content: t('account:custom_domain.delete_confirm'),
+    type: 'delete'
   });
 
   const [editDomain, setEditDomain] = useState<CustomDomainType | undefined>(undefined);
 
   // 检查用户是否有 advanced 套餐
   const isAdvancedPlan = useMemo(() => {
-    const currentLevel = teamPlanStatus?.standard?.currentSubLevel;
-    if (!currentLevel) return false;
+    const plan = teamPlanStatus?.standard;
+    if (!plan) return false;
 
-    return currentLevel === StandardSubLevelEnum.advanced;
-  }, [teamPlanStatus?.standard?.currentSubLevel]);
+    return plan.customDomain && plan.customDomain > 0;
+  }, [teamPlanStatus?.standard]);
 
   return (
     <>
@@ -138,7 +139,9 @@ const CustomDomain = () => {
                           <Button
                             variant="whiteDanger"
                             onClick={() => {
-                              return openConfirm(() => onDelete(customDomain.domain))();
+                              return openConfirm({
+                                onConfirm: () => onDelete(customDomain.domain)
+                              })();
                             }}
                           >
                             {t('common:Delete')}
