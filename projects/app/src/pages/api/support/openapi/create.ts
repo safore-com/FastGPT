@@ -18,6 +18,7 @@ async function handler(req: ApiRequestProps<EditApiKeyProps>): Promise<string> {
       const { teamId, tmbId } = await authUserPer({
         req,
         authToken: true,
+        authApiKey: true,
         per: TeamApikeyCreatePermissionVal
       });
       return { teamId, tmbId };
@@ -26,7 +27,8 @@ async function handler(req: ApiRequestProps<EditApiKeyProps>): Promise<string> {
         req,
         per: ManagePermissionVal,
         appId,
-        authToken: true
+        authToken: true,
+        authApiKey: true
       });
       return { teamId, tmbId };
     }

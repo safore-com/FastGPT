@@ -58,8 +58,19 @@ async function handler(req: ApiRequestProps<CreateAppBody>) {
 
   // 凭证校验
   const { teamId, tmbId, userId, isRoot } = parentId
-    ? await authApp({ req, appId: parentId, per: WritePermissionVal, authToken: true })
-    : await authUserPer({ req, authToken: true, per: TeamAppCreatePermissionVal });
+    ? await authApp({
+        req,
+        appId: parentId,
+        per: WritePermissionVal,
+        authToken: true,
+        authApiKey: true
+      })
+    : await authUserPer({
+        req,
+        authToken: true,
+        authApiKey: true,
+        per: TeamAppCreatePermissionVal
+      });
 
   // 上限校验
   await checkTeamAppTypeLimit({
