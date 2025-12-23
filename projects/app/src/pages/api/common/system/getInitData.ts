@@ -30,7 +30,7 @@ async function handler(
   const { bufferId } = req.query;
 
   try {
-    await authCert({ req, authToken: true });
+    await authCert({ req, authToken: true, authApiKey: true });
     // If bufferId is the same as the current bufferId, return directly
     if (bufferId && global.systemInitBufferId && global.systemInitBufferId === bufferId) {
       return {
