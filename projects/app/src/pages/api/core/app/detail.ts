@@ -17,6 +17,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const { app, teamId, isRoot } = await authApp({
     req,
     authToken: true,
+    authApiKey: true,
     appId,
     per: ReadPermissionVal
   });

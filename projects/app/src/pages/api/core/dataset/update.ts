@@ -82,6 +82,7 @@ async function handler(
   const { dataset, permission, tmbId, teamId } = await authDataset({
     req,
     authToken: true,
+    authApiKey: true,
     datasetId: id,
     per: ReadPermissionVal
   });
@@ -102,6 +103,7 @@ async function handler(
       const { dataset: targetDataset } = await authDataset({
         req,
         authToken: true,
+        authApiKey: true,
         datasetId: parentId,
         per: ManagePermissionVal
       });
@@ -114,6 +116,7 @@ async function handler(
       await authDataset({
         req,
         authToken: true,
+        authApiKey: true,
         datasetId: dataset.parentId,
         per: ManagePermissionVal
       });
