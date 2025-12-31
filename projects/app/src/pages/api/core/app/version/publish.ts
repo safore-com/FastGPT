@@ -22,7 +22,8 @@ async function handler(req: ApiRequestProps<PostPublishAppProps>, res: NextApiRe
     appId,
     req,
     per: WritePermissionVal,
-    authToken: true
+    authToken: true,
+    authApiKey: true
   });
 
   beforeUpdateAppFormat({
